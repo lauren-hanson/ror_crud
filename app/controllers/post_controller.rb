@@ -42,6 +42,15 @@ class PostController < ApplicationController
     redirect_to post_index_path
   end
 
+  def index 
+    if params[:location].present? 
+      @posts = Post.where(location: params[:location])
+    else
+      @posts = Post.all
+    end
+  end
+
+
   private
   def post_params
     params.require(:post).permit(:title, :description, :location)

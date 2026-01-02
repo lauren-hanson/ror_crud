@@ -1,22 +1,22 @@
 <%= link_to "See All Posts", post_index_path %>
 
-<%# Decide the color based on location %>
-<% color = case @post.location
-   when "Nashville" then "green"
-   when "Memphis" then "blue"
-   when "Knoxville" then "orange"
-   when "Chattanooga" then "purple"
-   else "gray"
-end %>
+<%# Decide the color based on location %>   
+    <% color = case @post.location
+        when "East" then "blue" 
+        when "North" then "orange"
+        when "West" then "green"
+        when "South" then "purple"
+        when "Downtown" then "red"            
+        else "Grey"
+    end %>
 
-<h1>
-  <%# Colored square %>
-  <span style="display:inline-block; width:20px; height:20px; background-color:<%= color %>; margin-right:4px; border-radius:50%; "></span>
-  <%= @post.title %>
-</h1>
 
-<p> <%=@post.description %> </p>
+    <p>
+    <span style="display:inline-block; width:15px; height:15px; background-color:<%= color %>; margin-right:5px; border-radius:50%;"></span>
+    <strong><%= @post.title %></strong>
+    </p>
 
+    <p><%= @post.description %></p>
 
 <%= link_to "Edit", post_edit_path(@post) %><br>
 <%= link_to "Delete", post_delete_path(@post), data: {
