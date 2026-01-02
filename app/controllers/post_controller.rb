@@ -43,7 +43,7 @@ class PostController < ApplicationController
   end
 
   def index 
-    if params[:location].present? 
+    if params[:location].present? && params[:location] != "All"
       @posts = Post.where(location: params[:location])
     else
       @posts = Post.all

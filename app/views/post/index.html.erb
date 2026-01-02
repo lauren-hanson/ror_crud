@@ -1,38 +1,48 @@
-<h1>Love Me Some</h1>
-<p>Places that make Nashville</p>
-<%= link_to "Add a Location", new_post_path %><br>
+<section class="col-start-3 row-start-3 flex max-w-lg flex-col bg-white p-2">
+    <h1 class="text-3xl font-bold">Love Me Some</h1>
+    <p>Places that make Nashville</p>
+    <p class="underline">
+        <%= link_to "Add a Location", new_post_path %><br>
+    <p>
 
-<%= form_with url: post_index_path, method: :get, location: true do %> 
-    <%= label_tag :location, "Filter by location:" %>
-    <%= select_tag :location, options_for_select(["All", "Downtown", "East", "West", "North", "South"]) %> 
-    <%= submit_tag "Filter" %> 
-<% end %> 
-
-
-<% if @posts.empty? %> 
-    <p>No posts available.</p>
-<% else %> 
-    <% @posts.each do |post| %>
-        <p>
-        <% color = case post.location
-            when "East" then "blue" 
-            when "North" then "orange"
-            when "West" then "green"
-            when "South" then "purple"
-            when "Downtown" then "teal"
-            else "Grey"
-        end %>
-
-        <span style="display:inline-block; width:15px; height:15px; background-color:<%= color %>; margin-right:5px; border-radius: 50%; "></span>
-
-        <%= post.title %> <br>
-        <span class="square <%= post.location %>"></span>
-        
-        <% if post.image.attached? %> 
-            <%= image_tag post.image, width: 300 %> 
-        <% end %><br>
-
-        <%= link_to "show more", post_show_path(post.id) %> <br>  
-        </p>
+    <%= form_with url: post_index_path, method: :get, location: true do %> 
+        <%= label_tag :location, "Filter by location:" %><br>
+        <%= select_tag :location, options_for_select(["All", "Downtown", "East", "West", "North", "South"]) %> 
+        <%= submit_tag "Filter" %> 
     <% end %> 
-<% end %>
+    <section class="flex flex-col gap-2 p-8 sm:flex-row sm:items-center sm:gap-6 sm:py-4">
+        <% if @posts.empty? %> 
+            <p>No posts available.</p>
+        <% else %> 
+            <% @posts.each do |post| %>
+                <p>
+                    <% color = case post.location
+                        when "East" then "blue" 
+                        when "North" then "orange"
+                        when "West" then "green"
+                        when "South" then "purple"
+                        when "Downtown" then "teal"
+                        else "Grey"
+                    end %>
+
+                    <div class="flex items-center">
+                        <span style="display:inline-block; width:15px; height:15px; background-color:<%= color %>; margin-right:5px; border-radius: 50%; "></span>
+
+                        <h2 class="font-bold"><%= post.title %>
+                        <span class="square <%= post.location %>"></span></h2> 
+                    </div>
+                    
+                    <% if post.image.attached? %> 
+                        <div class="rounded-md overflow-hidden inline-block">
+                            <%= image_tag post.image, width: 300 %> 
+                        </div>  
+                    <% end %>
+
+                    <p class="underline">
+                        <%= link_to "Show More", post_show_path(post.id) %> <br> 
+                    </p>
+                </p>
+            <% end %> 
+        <% end %>
+    </section>
+</section>
