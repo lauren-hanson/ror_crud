@@ -1,14 +1,17 @@
 <h1>Edit Post</h1>
 
 <%= form_with model: @post, url: post_edit_path do |f|%>
-  <%= f.label :title %><br>
-  <%= f.text_field :title %><br>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %><br>
 
-  <%= f.label :description %><br>
-  <%= f.text_field :description %><br>
+    <%= f.label :description %><br>
+    <%= f.text_field :description %><br>
 
-  <%= f.label :location %><br>
-  <%= f.select :location, ["North", "South", "East", "West", "Downtown"], prompt: "Neighborhood:" %><br>
+    <%= f.label :location %><br>
+    <%= f.select :location, ["North", "South", "East", "West", "Downtown"], prompt: "Neighborhood:" %><br>
 
-  <%= f.submit "Update Post" %>
+    <%= f.label :image, "Upload An Image" %><br>
+    <%= f.file_field :image %><br>
+
+    <%= f.submit "Update Post" %>
 <% end %>

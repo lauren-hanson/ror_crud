@@ -7,5 +7,7 @@
   <%= f.text_field :description %><br>
   <%= f.label "What part of town?" %><br> 
   <%= f.select :location, ["North", "South", "East", "West", "Downtown"], prompt: "Neighborhood:" %><br> 
+  <%= f.label :image, "Upload An Image" %><br>
+  <%= f.file_field :image %><br>
   <%= f.submit %>
 <% end %>

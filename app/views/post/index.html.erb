@@ -1,4 +1,4 @@
-<h1>Love Me Some Nashville</h1>
+<h1>Love Me Some</h1>
 <p>Places that make Nashville</p>
 <%= link_to "Add a Location", new_post_path %><br>
 
@@ -19,7 +19,7 @@
             when "North" then "orange"
             when "West" then "green"
             when "South" then "purple"
-            when "Downtown" then "red"
+            when "Downtown" then "teal"
             else "Grey"
         end %>
 
@@ -27,6 +27,11 @@
 
         <%= post.title %> <br>
         <span class="square <%= post.location %>"></span>
+        
+        <% if post.image.attached? %> 
+            <%= image_tag post.image, width: 300 %> 
+        <% end %><br>
+
         <%= link_to "show more", post_show_path(post.id) %> <br>  
         </p>
     <% end %> 

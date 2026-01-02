@@ -6,7 +6,7 @@
         when "North" then "orange"
         when "West" then "green"
         when "South" then "purple"
-        when "Downtown" then "red"            
+        when "Downtown" then "teal"            
         else "Grey"
     end %>
 
@@ -15,6 +15,10 @@
     <span style="display:inline-block; width:15px; height:15px; background-color:<%= color %>; margin-right:5px; border-radius:50%;"></span>
     <strong><%= @post.title %></strong>
     </p>
+
+    <% if @post.image.attached? %> 
+        <%= image_tag @post.image, width: 300 %> 
+    <% end %> 
 
     <p><%= @post.description %></p>
 
