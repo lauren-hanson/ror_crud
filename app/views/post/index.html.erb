@@ -1,10 +1,29 @@
-<h1>Hello World</h1>
-<p>This is my test app for a Rails app</p>
-<%= link_to "Create New", new_post_path %><br>
+<h1>Love Me Some Nashville</h1>
+<p>Places that make Nashville</p>
+<%= link_to "Add a Location", new_post_path %><br>
 
-<% @posts.each do |post|%>
-<p>
-    <%= post.title %> <br>
-    <%= link_to "show more", post_show_path(post.id) %> <br>  
-</p>
+<% if @posts.empty? %> 
+    <p>No posts available.</p>
+<% else %> 
+    <% @posts.each do |post| %>
+        <p>
+        <%# Decide the color based on location %>
+        <% color = case post.location
+            when "East" then "blue" 
+            when "North" then "orange"
+            when "West" then "green"
+            when "South" then "purple"
+            when "Downtown" then "red"
+            else "grey"
+        end %>
+
+        <%# Colored square %>
+            <span style="display:inline-block; width:15px; height:15px; background-color:<%= color %>; margin-right:5px; border-radius: 50%; "></span>
+
+        <%# Title with Square %> 
+            <%= post.title %> <br>
+            <span class="square <%= post.location %>"></span>
+            <%= link_to "show more", post_show_path(post.id) %> <br>  
+        </p>
+    <% end %> 
 <% end %>
